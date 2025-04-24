@@ -133,7 +133,7 @@ atf:
 	 elif [ $(SOCFAMILY) = IMX ]; then \
 	    [ $${MACHINE:0:7} = imx8ulp ] && plat=$${MACHINE:0:7} || plat=$${MACHINE:0:6} && \
 	    [ $${MACHINE:0:4} = imx9 ] && plat=$${MACHINE:0:5} || true && \
-	    $(MAKE) -j$(JOBS) PLAT=$$plat bl31 && \
+	    $(MAKE) -j$(JOBS) PLAT=$$plat IMX_BOOT_UART_BASE=0x30880000 bl31 && \
 	    mkdir -p $(FBOUTDIR)/bsp/atf/$(MACHINE) && \
 	    cp -f build/$$plat/release/bl31.bin $(FBOUTDIR)/bsp/atf/$(MACHINE)/; \
 	 fi && \

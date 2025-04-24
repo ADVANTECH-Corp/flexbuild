@@ -32,8 +32,8 @@ define imx_mkimage_target
 	bld mcore_demo; \
     fi && \
     \
-    if echo $1 | grep -qE ^imx8mp; then \
-	SOC=iMX8MP; SOC_FAMILY=iMX8M; target=flash_evk; \
+    if echo $1 | grep -qE imx8mp; then \
+	SOC=iMX8MP; SOC_FAMILY=iMX8M; target=flash_evk; DTBS=imx8mp-rsb3720-a2.dtb; \
     elif echo $1 | grep -qE ^imx8mm; then \
 	SOC=iMX8MM; SOC_FAMILY=iMX8M; target=flash_evk; \
     elif echo $1 | grep -qE ^imx8mn; then \
@@ -96,7 +96,7 @@ define imx_mkimage_target
     elif [ $${MACHINE:0:5} = imx93 ]; then \
 	$(MAKE) SOC=iMX93 REV=A1 -C iMX93 -f soc.mak $$target; \
     fi && \
-    $(MAKE) SOC=$$SOC $(REV_OPTION) $$target; \
+    $(MAKE) SOC=$$SOC $(REV_OPTION) dtbs=$$DTBS $$target; \
     mkdir -p $(FBOUTDIR)/bsp/imx-mkimage/$$brd && \
     cp $$SOC_FAMILY/flash.bin $(FBOUTDIR)/bsp/imx-mkimage/$$brd/flash.bin;
 endef

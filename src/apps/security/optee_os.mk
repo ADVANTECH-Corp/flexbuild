@@ -38,7 +38,11 @@ ifeq ($(CONFIG_OPTEE),y)
 	elif [ $(SOCFAMILY) = IMX ]; then \
 		 if [ $(MACHINE) = qemuarm64 -o $(MACHINE) = all ]; then \
 		     brd=mx8mpevk; \
-		 else \
+		 elif [[ "${MACHINE}" == *imx8* ]] && [[ "${MACHINE}" != *evk* ]];then \
+		     brd=$$(echo $$(echo ${MACHINE}|grep -o "mx8..")evk); \
+		 elif [[ "${MACHINE}" == *imx9* ]] && [[ "${MACHINE}" != *evk* ]];then \
+		     brd=$$(echo $$(echo ${MACHINE}|grep -o "mx9.")evk); \
+		else \
 		     brd=$${MACHINE:1}; \
 		 fi && \
 		 $(MAKE) PLATFORM=imx PLATFORM_FLAVOR=$$brd ARCH=arm CFG_TEE_TA_LOG_LEVEL=0 CFG_TEE_CORE_LOG_LEVEL=0 && \
