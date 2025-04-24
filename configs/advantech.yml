@@ -59,7 +59,7 @@ DEFAULT_PKGDIR: $FBDIR/components_${DISTRIB_VERSION}
 # default kernel config list
 KERNEL_CONFIG:
   ARM64_LS:  "defconfig lsdk.config"
-  ARM64_IMX: "defconfig imx.config imx_v8_defconfig"
+  ARM64_IMX: "defconfig imx.config imx_v8_adv_defconfig"
   ARM32_LS:  "multi_v7_defconfig multi_v7_lpae.config lsdk.config"
   ARM32_IMX: "imx_v7_defconfig"
 
@@ -75,9 +75,11 @@ repo:
 # BSP component repositories
   atf:
     url:  https://github.com/nxp-imx/imx-atf.git
+    commit : 49143a1701d9ccd3239e3f95f3042897ca889ea8
 
   uboot:
-    url:  https://github.com/nxp-imx/uboot-imx.git
+    url:  https://github.com/ADVANTECH-Corp/uboot-imx.git
+    commit:  68e8b2c37b32888d9152fcc4f8774379fda9e9c7
 
   rcw:
     url:  https://github.com/nxp-qoriq/rcw.git
@@ -139,8 +141,8 @@ repo:
 
 # kernel and modules git repositories
   linux:
-    url:  https://github.com/nxp-imx/linux-imx.git
-    tag:  lf-6.6.36-2.1.0
+    url:  https://github.com/ADVANTECH-Corp/linux-imx.git
+    commit:  fe7cf99b2b53642cdda0dfedcf20c6e396a7b854
 
   cryptodev_linux:
     url:  https://github.com/cryptodev-linux/cryptodev-linux.git
@@ -230,7 +232,8 @@ repo:
     url:  https://github.com/nxp-qoriq/secure_obj.git
 
   optee_os:
-    url:  https://github.com/nxp-qoriq/optee_os.git
+    url:  https://github.com/clayderhua/optee_os.git
+    commit: 2409e1fdc99d5532d227e167269f73ad4e6d0ee0
 
   optee_client:
     url:  https://github.com/nxp-qoriq/optee_client.git
