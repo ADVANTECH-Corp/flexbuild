@@ -79,7 +79,7 @@ repo:
 
   uboot:
     url:  https://github.com/ADVANTECH-Corp/uboot-imx.git
-    commit:  68e8b2c37b32888d9152fcc4f8774379fda9e9c7
+    commit:  a1ddd94fb6fe9f6f125d0a00a10fe363b3a1d274
 
   rcw:
     url:  https://github.com/nxp-qoriq/rcw.git
@@ -142,7 +142,7 @@ repo:
 # kernel and modules git repositories
   linux:
     url:  https://github.com/ADVANTECH-Corp/linux-imx.git
-    commit:  fe7cf99b2b53642cdda0dfedcf20c6e396a7b854
+    commit:  b63deceb8b6e69b8c2fe404e5a3a4ee01da087a0
 
   cryptodev_linux:
     url:  https://github.com/cryptodev-linux/cryptodev-linux.git
