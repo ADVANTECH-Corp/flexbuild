@@ -51,6 +51,9 @@ ls1088ardb, ls2088ardb, ls2160ardb, lx2162aqds, etc
 ------------------
 
 ```
+$ git clone https://github.com/ADVANTECH-Corp/flexbuild.git -b $tag_name
+Example:  $tag_name is rsb3720a2_dd01202_k0606023_mx8mp_06g
+$git clone https://github.com/ADVANTECH-Corp/flexbuild.git -b rsb3720a2_dd01202_k0606023_mx8mp_06g
 $ cd flexbuild
 $ . setup.env  (in host environment)
 $ bld docker   (create or attach to docker)
