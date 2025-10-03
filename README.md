@@ -72,6 +72,10 @@ Most used example with automated build:
 
 Create the wic sd / emmc images
 ```
+Check your Host PC need to install tools.
+ apt-get update
+ apt-get install -y fdisk udev e2fsprogs dosfstools
+
 Go to the images folder
  cd build_lsdk2412/images/
 
