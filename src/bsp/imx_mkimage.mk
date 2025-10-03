@@ -57,8 +57,8 @@ define imx_mkimage_target
 	SOC=iMX91; SOC_FAMILY=iMX91; target=flash_singleboot; \
 	cp $(BSPDIR)/fw_ele/mx91a*-ahab-container.img $(BSPDIR)/imx_mkimage/iMX91; \
 	cp $(BSPDIR)/fw_upower/upower_a*.bin $(BSPDIR)/imx_mkimage/iMX91/; \
-    elif echo $1 | grep -qE ^imx93; then \
-	SOC=iMX93; SOC_FAMILY=iMX93; target=flash_singleboot; \
+    elif echo $1 | grep -qE imx93; then \
+	SOC=iMX93; SOC_FAMILY=iMX93; target=flash_singleboot; DTBS=imx93-rom2820-a1.dtb; \
 	cp $(BSPDIR)/fw_ele/mx93a*-ahab-container.img $(BSPDIR)/imx_mkimage/iMX93; \
 	cp $(BSPDIR)/fw_upower/upower_a*.bin $(BSPDIR)/imx_mkimage/iMX93/; \
 	cp $(BSPDIR)/imx_mcore_demos/imx93-m33-demo/imx93-11x11-evk_m33_TCM_rpmsg_lite_str_echo_rtos.bin \
@@ -96,7 +96,7 @@ define imx_mkimage_target
     elif [ $${MACHINE:0:5} = imx93 ]; then \
 	$(MAKE) SOC=iMX93 REV=A1 -C iMX93 -f soc.mak $$target; \
     fi && \
-    $(MAKE) SOC=$$SOC $(REV_OPTION) $$target; \
+    $(MAKE) SOC=$$SOC $(REV_OPTION) dtbs=$$DTBS $$target; \
     mkdir -p $(FBOUTDIR)/bsp/imx-mkimage/$$brd && \
     cp $$SOC_FAMILY/flash.bin $(FBOUTDIR)/bsp/imx-mkimage/$$brd/flash.bin;
 endef
