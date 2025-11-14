@@ -35,6 +35,8 @@ device (SD/eMMC card or USB/SATA disk) on target board or on host machine.
 
 ## Supported platforms
 ----------------------
+- __ADVANTECH platform__:
+imx8mprom5722a2, etc
 - __iMX platform__:  
 imx6qpsabresd, imx6qsabresd, imx6sllevk, imx7ulpevk, imx8mmevk, imx8mnevk, imx8mpevk,  
 imx8mqevk, imx8qmmek, imx8qxpmek, imx8ulpevk, imx93evk, imx91frdm, imx93frdm, etc
@@ -48,6 +50,7 @@ ls1088ardb, ls2088ardb, ls2160ardb, lx2162aqds, etc
 ------------------
 
 ```
+$ git clone https://github.com/ADVANTECH-Corp/flexbuild.git -b LSDK-24.12-imx8mprom5722a1
 $ cd flexbuild
 $ . setup.env  (in host environment)
 $ bld docker   (create or attach to docker)
@@ -60,9 +63,35 @@ Usage: bld -m <machine>
 
 Most used example with automated build:
 ```
- bld -m imx8mpevk                # automatically build BSP + kernel + NXP-specific components + Debian RootFS for imx8mpevk platform
- bld -m lx2160ardb               # same as above, for lx2160ardb platform
- bld auto -p IMX (or -p LS)      # same as above, for all arm64 iMX (or Layerscape) platforms
+ bld -m imx8mprom5722a2          # For imx8mp ROM5722A2 Board
+ bld -m imx8mpevk                # For imx8mp EVK Board automatically build BSP + kernel + NXP-specific components + Debian RootFS for imx8mpevk platform
+```
+
+Create the wic sd / emmc images
+```
+Check your Host PC need to install tools.
+ apt-get update
+ apt-get install -y fdisk udev e2fsprogs dosfstools
+
+Go to the images folder
+ cd build_lsdk2412/images/
+
+For imx8mp ROM5722A2 example (Default 8G size)
+Example
+ flex-installer -m imx8mprom5722a2 -i mkwic -f boot_IMX_arm64_lts_6.6.23 -f firmware_imx8mprom5722a2_sdboot.img -r rootfs_lsdk2412_debian_desktop_arm64_202504291351.tar.zst
+
+If you want to change size, please try to modify flex-installer:
+ sudo vim /usr/bin/flex-installer
+
+(16G SIZE Example)
+  FIVERSION=1.27.2412
+  DEFAULT_PARTITION_NUMBER=4
+  DEFAULT_DISK_PARTITION="3P=512M:14G:-1"
+  DEFAULT_LOOP_DEVICE_PARTITION="3P=512M:64M:-1"
+  DEFAULT_SDCARD_IMG_SIZE_MB=14336
+  DEFAULT_RAW_PARTITION_SIZE_MB=256
+  DEFAULT_LINUX_VERSION=6.6.36
+  DEFAULT_DISTRO_SVR_URL=http://www.nxp.com/lgfiles/sdk/lsdk2412
 ```
 
 Most used example with separate command:
