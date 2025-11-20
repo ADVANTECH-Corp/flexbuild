@@ -80,7 +80,7 @@ Go to the images folder
  cd build_lsdk2412/images/
 
 For imx8mp RSB3720A2 example (Default 8G size)
- flex-installer -m imx8mprsb3720a2 -i mkwic -f boot_IMX_arm64_lts_6.6.23 -f firmware_imx8mprsb3720a2_sdboot.img -r rootfs_lsdk2412_debian_desktop_arm64_202504291351.tar.zst
+ flex-installer -m imx8mprsb3720a2 -i mkwic -b boot_IMX_arm64_lts_6.6.23 -f firmware_imx8mprsb3720a2_sdboot.img -r rootfs_lsdk2412_debian_desktop_arm64_202504291351.tar.zst
 
 If you want to change size, please try to modify flex-installer:
  sudo vim /usr/bin/flex-installer
